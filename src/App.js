@@ -11,16 +11,11 @@ function App() {
           children={"Would you like to browse our recommended products?"}
         />
       )}
-      {
-        <Message
-          variant={"success"}
-          elevated
-          children={"Would you like to browse our recommended products?"}
-        />
-      }
+      {<Message variant={"success"} elevated children={"Would you like ?"} />}
 
       <Message
         variant={"error"}
+        outlined
         children={"There was an error during transaction!"}
       />
     </>

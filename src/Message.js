@@ -1,12 +1,11 @@
+import css from "./Message.module.css";
 import clsx from "clsx";
-import "./Message.css";
-
 const Message = ({ variant, outlined, elevated, children }) => {
   return (
     <p
-      className={clsx("alert", variant, {
-        "is-outlined": outlined,
-        "is-elevated": elevated,
+      className={clsx(css[variant], {
+        [css.isOutlined]: outlined,
+        [css.isElevated]: elevated,
       })}
     >
       {children}
