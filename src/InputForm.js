@@ -3,18 +3,27 @@ const INITIAL_STATE = {
   login: "",
   password: "",
   email: "",
+  agreed: false,
+  gender: null,
+  age: "",
+};
+const Gender = {
+  MALE: "male",
+  FEMALE: "female",
 };
 class SignUpForm extends Component {
   state = { ...INITIAL_STATE };
   handleChange = (evt) => {
     evt.preventDefault();
-    const { name, value } = evt.target;
-    this.setState({ [name]: value });
+    console.log("evt.target:", evt.target);
+    const { name, value, type, checked } = evt.target;
+    this.setState({
+      [name]: type === "checkbox" ? checked : value,
+    });
+    console.log("name, checked", name, checked, value);
   };
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const { login, email, password } = this.state;
-    console.log(`Login: ${login}, Email: ${email}, Password: ${password}`);
     this.props.onSubmit({ ...this.state });
     this.reset();
   };
@@ -23,9 +32,32 @@ class SignUpForm extends Component {
     this.setState({ ...INITIAL_STATE });
   };
   render() {
-    const { login, password, email } = this.state;
+    const { login, password, email, agreed, gender, age } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
+        <section>
+          <h2>Choose your gender</h2>
+          <label>
+            Male
+            <input
+              type="radio"
+              checked={gender === Gender.MALE}
+              name="gender"
+              value={Gender.MALE}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Female
+            <input
+              type="radio"
+              checked={gender === Gender.FEMALE}
+              name="gender"
+              value={Gender.FEMALE}
+              onChange={this.handleChange}
+            />
+          </label>
+        </section>
         <label>
           name
           <input
@@ -57,7 +89,30 @@ class SignUpForm extends Component {
             onChange={this.handleChange}
           ></input>
         </label>
-        <button type="submit">Sign up as {login}</button>
+
+        <label>
+          Choose your age
+          <select name="age" value={age} onChange={this.handleChange}>
+            <option value="" disabled>
+              ...
+            </option>
+            <option value="18-25">18-25</option>
+            <option value="26-35">26-35</option>
+            <option value="36+">36+</option>
+          </select>
+        </label>
+        <label>
+          agree to terms
+          <input
+            type="checkbox"
+            name="agreed"
+            checked={agreed}
+            onChange={this.handleChange}
+          ></input>
+        </label>
+        <button type="submit" disabled={!agreed}>
+          Sign up as {login}
+        </button>
       </form>
     );
   }
