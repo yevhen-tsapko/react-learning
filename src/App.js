@@ -1,9 +1,10 @@
 import "./App.css";
+import SignUpForm from "./InputForm";
 
 function App() {
   return (
     <div>
-      <p>Edit and save to reload.</p>
+      <SignUpForm onSubmit={(values) => console.log(values)} />
     </div>
   );
 }
