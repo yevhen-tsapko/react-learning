@@ -1,9 +1,10 @@
 import "./App.css";
+import Counter from "./hookComponent";
 
 function App() {
   return (
     <div>
-      <p>Edit and save to reload.</p>
+      <Counter />
     </div>
   );
 }
