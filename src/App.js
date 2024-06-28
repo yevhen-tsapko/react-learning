@@ -1,9 +1,13 @@
 import "./App.css";
-
+import { useUserContext } from "./UserProvider";
 function App() {
   return (
     <div>
-      <p>Edit and save to reload.</p>
+      <p>
+        {useUserContext().userName}{" "}
+        {useUserContext().isLogIn ? "true" : "false"}
+      </p>
+      {console.log(useUserContext().userName)}
     </div>
   );
 }
