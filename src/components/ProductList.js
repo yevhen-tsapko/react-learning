@@ -6,7 +6,7 @@ export const ProductList = ({ products }) => {
     <Container>
       {products.map((product) => (
         <CardWrapper key={product.id}>
-          <Link to={`${product.id}`}>
+          <Link to={product.id}>
             <img src="https://via.placeholder.com/200x100" alt="" />
             <ProductName>{product.name}</ProductName>
           </Link>
